@@ -3,14 +3,15 @@ import { useFetchProductsQuery, useAddProductMutation } from '../features/api/ap
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
 import ProductCard from '../custom/ProductCard';
+import { Description } from '@headlessui/react';
 
 const ProductList: React.FC = () => {
   const { data: products, error, isLoading } = useFetchProductsQuery();
   const [addProduct] = useAddProductMutation();
   const dispatch = useDispatch();
 
-  const handleAddToCart = (productId: string, productName: string, productPrice: number) => {
-    dispatch(addToCart({ id: productId, title: productName, price: productPrice, quantity: 1 }));
+  const handleAddToCart = (productId: string, description: string, prix: number) => {
+    dispatch(addToCart({ id: productId, description: description, prix: prix, quantity: 1 }));
   };
 
   let content;
@@ -24,10 +25,10 @@ const ProductList: React.FC = () => {
   } else {
     content = (
       <section style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "20px" }}>
-        {products?.map(product => (
+        {products?.map((product:any)  => (
 
-          <ProductCard image={product.image} description={product.title} price={product.price} key={product.id} handleClick={() => handleAddToCart(product.id, product.title, product.price)}
-            productName={''} />
+          <ProductCard imageUrl={product.imageUrl} description={product.description} prix={product.prix} key={product.id} handleClick={() => handleAddToCart(product.id, product.description, product.prix)}
+            reference={''} />
 
         ))}
       </section>

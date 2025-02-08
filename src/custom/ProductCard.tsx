@@ -1,14 +1,15 @@
 import React from 'react'
 
 interface IProduct {
-    image: any,
-    price: any,
-    productName: string,
-    description: string
+    imageUrl: string,
+    type?:string,
+    reference?:string,
+    prix: number,
+    description: string,
     handleClick: () => void
 }
 
-function ProductCard({image,price,productName,description,handleClick}: IProduct) {
+function ProductCard({imageUrl,prix,reference,description,handleClick}: IProduct) {
     return (
         <div>
             <a href="#" className="group relative block overflow-hidden">
@@ -19,18 +20,18 @@ function ProductCard({image,price,productName,description,handleClick}: IProduct
                 </button>
 
                 <img
-                    src={image}
+                    src={imageUrl}
                     alt=""
                     className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 p-10 "
                 />
 
                 <div className="relative border border-gray-100 bg-white p-6">
                     <p className="text-gray-700">
-                    {price}
-                        <span className="text-gray-400 line-through">{price}</span>
+                    {prix}
+                        <span className="text-gray-400 line-through">{prix}</span>
                     </p>
 
-                    <h3 className="mt-1.5 text-lg font-medium text-gray-900">{productName}</h3>
+                    <h3 className="mt-1.5 text-lg font-medium text-gray-900">{reference}</h3>
 
                     <p className="mt-1.5 line-clamp-3 text-gray-700">
                         {description}

@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { useAddProductMutation } from '../features/api/apiSlice';
 
 const AddProductForm: React.FC = () => {
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
+  const [type, setType] = useState('');
+  const [prix, setPrix] = useState('');
+  const [reference, setReference] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [description, setDescription] = useState('');
   const [addProduct] = useAddProductMutation();
 
   const handleAddProduct = async () => {
-    await addProduct({ title, price: parseFloat(price) });
-    setTitle('');
-    setPrice('');
+    await addProduct({ type,reference,description,imageUrl, prix: parseFloat(prix) });
+    
   };
 
   return (
@@ -17,15 +19,15 @@ const AddProductForm: React.FC = () => {
       <h2 className="text-2xl mb-4">Add Product</h2>
       <input
         type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
         placeholder="Product Name"
         className="border p-2 mb-4"
       />
       <input
         type="number"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        value={prix}
+        onChange={(e) => setPrix(e.target.value)}
         placeholder="Product Price"
         className="border p-2 mb-4"
       />

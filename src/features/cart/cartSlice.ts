@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
   id: string;
-  title: string;
-  price: number;
+  description: string;
+  prix: number;
   quantity: number;
 }
 
@@ -28,12 +28,12 @@ const cartSlice = createSlice({
       } else {
         state.items.push(action.payload);
       }
-      state.totalPrice += action.payload.price * action.payload.quantity;
+      state.totalPrice += action.payload.prix * action.payload.quantity;
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       const itemToRemove = state.items.find(item => item.id === action.payload);
       if (itemToRemove) {
-        state.totalPrice -= itemToRemove.price * itemToRemove.quantity;
+        state.totalPrice -= itemToRemove.prix * itemToRemove.quantity;
         state.items = state.items.filter(item => item.id !== action.payload);
       }
     },

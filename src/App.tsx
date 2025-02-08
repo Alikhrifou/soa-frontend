@@ -14,7 +14,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <div className="App">
         <Header />
-        {!isAuthenticated ? (
+        {isAuthenticated ? (
           <Login />
         ) : (
           <div className="flex">

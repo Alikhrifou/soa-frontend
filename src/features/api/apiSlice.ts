@@ -2,27 +2,28 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface Product {
   id: string;
-  title: string;
+  type: string;
   description?: string;
-  category?: string;
-  image?: string;
-  rating?: string;
-  price: number;
+  reference?: string;
+  imageUrl?: string;
+  prix: number;
+  clientId?: number;
 }
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }), // Replace with your API base URL
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9090/' }), // Replace with your API base URL
   endpoints: (builder) => ({
     fetchProducts: builder.query<Product[], void>({
-      query: () => 'products',
+      query: () => 'api/produits/all',
     }),
     addProduct: builder.mutation<Product, Partial<Product>>({
       query: (newProduct) => ({
-        url: 'products',
+        url: 'api/produits/create',
         method: 'POST',
         body: newProduct,
       }),
+      
     }),
   }),
 });

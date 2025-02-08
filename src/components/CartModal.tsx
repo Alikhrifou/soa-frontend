@@ -59,7 +59,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                           <ul>
                             {cartItems.map((item: any) => (
                               <li key={item.id} className="border rounded p-2 mb-2 flex justify-between items-center">
-                                {item.title} - ${item.price} x {item.quantity}
+                                {item.description} - ${item.prix} x {item.quantity}
                                 <button onClick={() => handleRemoveFromCart(item.id)} className="text-white p-2 ml-4">
                                   <HiOutlineTrash color="red" size={30} />
                                 </button>

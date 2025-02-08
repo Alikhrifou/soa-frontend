@@ -18,7 +18,7 @@ const Cart: React.FC = () => {
       <ul>
         {cartItems.map(item => (
           <li key={item.id} className="border p-2 mb-2">
-            {item.title} - ${item.price} x {item.quantity}
+            {item.description} - ${item.prix} x {item.quantity}
             <button onClick={() => handleRemoveFromCart(item.id)} className="bg-red-500 text-white p-2 ml-4">
               Remove
             </button>

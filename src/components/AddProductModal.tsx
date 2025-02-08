@@ -8,25 +8,30 @@ interface AddProductModalProps {
 }
 
 const AddProductModal: React.FC<AddProductModalProps> = ({ onClose }) => {
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
+  const [type, setType] = useState('');
+  const [prix, setPrix] = useState('');
+  const [reference, setReference] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+
 
   const [addProduct, { isLoading }] = useAddProductMutation();
 
   const handleAddProduct = async () => {
-    if (title && price) {
+    if (description && prix) {
       await addProduct({
-        title,
-        price: parseFloat(price),
+        clientId:1,
+        type,
+        prix: parseFloat(prix),
+        reference,
         description,
-        image,
+        imageUrl,
       });
-      setTitle('');
-      setPrice('');
+      setType('');
+      setPrix('');
+      setReference('');
       setDescription('');
-      setImage('');
+      setImageUrl('');
       onClose();
     }
   };
@@ -65,10 +70,11 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ onClose }) => {
                         Add Product
                       </Dialog.Title>
                       <div className="mt-2">
-                        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Product Title" className="border p-2 mb-2 w-full" />
-                        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Product Price" className="border p-2 mb-2 w-full" />
+                        <input type="text" value={type} onChange={(e) => setType(e.target.value)} placeholder="Product Type" className="border p-2 mb-2 w-full" />
+                        <input type="number" value={prix} onChange={(e) => setPrix(e.target.value)} placeholder="Product Price" className="border p-2 mb-2 w-full" />
                         <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" className="border p-2 mb-2 w-full" />
-                        <input type="text" value={image} onChange={(e) => setImage(e.target.value)} placeholder="Image URL" className="border p-2 mb-2 w-full" />
+                        <input type="text" value={reference} onChange={(e) => setReference(e.target.value)} placeholder="Reference" className="border p-2 mb-2 w-full" />
+                        <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="Image URL" className="border p-2 mb-2 w-full" />
                         <button onClick={handleAddProduct} className="bg-blue-500 text-white p-2 w-full" disabled={isLoading}>
                           {isLoading ? 'Adding...' : 'Add Product'}
                         </button>
